@@ -35,10 +35,22 @@ type MessageType = {
 };
 
 function App() {
-  const [msgs, setMsgs] = useState<MessageType[] | null>([]);
+  const [msgs, setMsgs] = useState<Array<MessageType | null>>([]);
 
   const handleFile = async (event: ChangeEvent<HTMLInputElement>) => {
     try {
+      if (!event.target.files) {
+        setMsgs((prev) => {
+          return [
+            ...prev,
+            {
+              type: 'error',
+              message: 'Щось пішло не так',
+            },
+          ];
+        });
+        return;
+      }
       let content = '';
       for await (const file of Array.from(event.target.files)) {
         const arrayBuffer = await file.arrayBuffer();
