@@ -1,5 +1,6 @@
 {
   "name": "vpo-prompt-template",
+  "homepage": "https://vry192.github.io/vpo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "docx": "^9.7.1",
